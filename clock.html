@@ -1,0 +1,125 @@
+
+<html>
+
+  <head><title>Widget</title></head>
+  <style>
+  .mobile-clock-widget {
+  background: url(mobile-clock-wallpaper.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 350px;
+  color: #fff;
+  text-align: center;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  background-blend-mode: overlay;
+  background-color: #17433b;
+  position: relative; }
+
+  .mobile-clock-widget .clock {
+    padding: 0;
+    position: relative;
+    list-style: none;
+    margin: 0 auto;
+    height: 175px;
+    width: 175px;
+    display: block;
+    background: url("clock-face.png") 5% center no-repeat; }
+  .mobile-clock-widget .sec {
+    background: url("sec.svg");
+    z-index: 3; }
+  .mobile-clock-widget .min {
+    background: url("min.svg");
+    z-index: 2; }
+  .mobile-clock-widget .hour {
+    background: url("hour.svg");
+    z-index: 1; }
+
+.mobile-clock-widget #date {
+  margin-top: 30px;
+  font-weight: 700; }
+
+.mobile-clock-widget p {
+  font-weight: 600; }
+  
+  .mobile-clock-widget .sec, .min, .hour {
+  position: absolute;
+  width: 24px;
+  height: 234px;
+  top: 0;
+  left: 102px;
+  margin-top: -30px;
+  margin-left: -25px; }
+
+  </style>
+
+  <body>
+  <div class="col-xl-3 xl-50 col-sm-6 box-col-6">
+                <div class="card">
+                  <div class="mobile-clock-widget">
+                    
+                    <div>
+                      <ul class="clock" id="clock">
+                        <li class="hour" id="hour"></li>
+                        <li class="min" id="min"></li>
+                        <li class="sec" id="sec"></li>
+                      </ul>
+                      <div class="date f-24 mb-2" id="date"><span id="monthDay"></span>,<span id="year"></span></div>
+                      <div>
+                        <p class="m-0 f-14 text-light">kolkata, India                                            </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+
+
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="crossorigin="anonymous"></script>   
+  <script>
+  
+	const months = ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"]
+const now = new Date()
+$('#monthDay').append(`${months[now.getMonth()]} ${now.getDate()}`);
+$('#year').append(`${now.getFullYear()}`);
+$(function() {
+      setInterval(function() {
+        var seconds = new Date().getSeconds();
+        var sdegree = seconds * 6;
+        var srotate = "rotate(" + sdegree + "deg)";
+        $("#sec").css({
+          "transform": srotate
+        });
+      }, 1000);
+      setInterval(function() {
+        var hours = new Date().getHours();
+        var mins = new Date().getMinutes();
+        var hdegree = hours * 30 + (mins / 2);
+        var hrotate = "rotate(" + hdegree + "deg)";
+        $("#hour").css({
+          "transform": hrotate
+        });
+      }, 1000);
+      setInterval(function() {
+        var mins = new Date().getMinutes();
+        var mdegree = mins * 6;
+        var mrotate = "rotate(" + mdegree + "deg)";
+        $("#min").css({
+          "transform": mrotate
+        });
+
+      }, 1000);
+});
+    
+      
+  </script>
+  
+</body></html>
+    
